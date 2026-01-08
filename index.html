@@ -14,6 +14,29 @@
         href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600;700&family=Montserrat:wght@300;400;500;600&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+
+    <!-- Meta Pixel Code -->
+    <script>
+        !function (f, b, e, v, n, t, s) {
+            if (f.fbq) return; n = f.fbq = function () {
+                n.callMethod ?
+                n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+            };
+            if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = '2.0';
+            n.queue = []; t = b.createElement(e); t.async = !0;
+            t.src = v; s = b.getElementsByTagName(e)[0];
+            s.parentNode.insertBefore(t, s)
+        }(window, document, 'script',
+            'https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', '1120348705763717'); // Pixel ID confirmed from previous context or generic placeholder if unknown
+        fbq('track', 'PageView');
+
+        // Meta Conversions API (CAPI) - Access Token Integration
+        const metaCAPIToken = "EAFry5T1AwZAcBQWa1zPtHG8VrSXGA4OrAT4TX6RIZAitqc5R31SPovxSfOfZANHHmqBRTKfCAzHhjpCfRVbcPR8UMiXagrQVpecm0L2rMkAjCEldUKEZCeIP6Aa7lUjrIOlNUZCnjedbIQkfRKT6sKq2WZCqSkx3lE0IZBSxqnsHiR11jhRSGjk0EJDYm2EPlVBgQZDZD";
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+            src="https://www.facebook.com/tr?id=1120348705763717&ev=PageView&noscript=1" /></noscript>
+    <!-- End Meta Pixel Code -->
 </head>
 
 <body>
@@ -37,10 +60,10 @@
         <!-- Background Video -->
         <div class="hero-video-container">
             <iframe class="hero-video desktop-video"
-                src="https://iframe.mediadelivery.net/play/571643/4bb96d48-e26b-44c5-9346-47e0bc16e1cd?autoplay=true&loop=true&muted=true&preload=true&background=1&controls=false&playlist=4bb96d48-e26b-44c5-9346-47e0bc16e1cd"
+                src="https://iframe.mediadelivery.net/play/571643/4bb96d48-e26b-44c5-9346-47e0bc16e1cd?autoplay=1&loop=1&muted=1&preload=true&background=1&controls=0"
                 loading="eager" allow="autoplay; fullscreen" allowfullscreen="true"></iframe>
             <iframe class="hero-video mobile-video"
-                src="https://iframe.mediadelivery.net/play/571643/e2c0f162-5185-477f-a186-1ff6ffb543c2?autoplay=true&loop=true&muted=true&preload=true&background=1&controls=false&playlist=e2c0f162-5185-477f-a186-1ff6ffb543c2"
+                src="https://iframe.mediadelivery.net/play/571643/e2c0f162-5185-477f-a186-1ff6ffb543c2?autoplay=1&loop=1&muted=1&preload=true&background=1&controls=0"
                 loading="eager" allow="autoplay; fullscreen" allowfullscreen="true"></iframe>
             <div class="hero-overlay"></div>
         </div>
@@ -194,28 +217,30 @@
                         sudor excesivo.</p>
                 </div>
             </div>
-        </div>
-        <!-- Care Video Title -->
-        <div style="text-align: center; margin-top: 3rem; margin-bottom: 1.5rem;">
-            <h3
-                style="font-family: var(--font-heading); font-size: clamp(1.5rem, 3vw, 2rem); color: var(--color-gold-primary); margin-bottom: 1rem;">
-                ⚠️ Esto le pasó a una clienta
-            </h3>
-            <div
-                style="font-size: 2rem; color: var(--color-gold-primary); animation: bounce 2s infinite; text-align: center; width: 100%;">
-                ↓↓↓
+            <!-- Care Video Title -->
+            <div style="text-align: center; margin-top: 4rem; margin-bottom: 2rem; width: 100%;">
+                <h3
+                    style="font-family: var(--font-heading); font-size: 1.8rem; color: var(--color-gold-primary); margin-bottom: 1rem; text-align: center;">
+                    ⚠️ Esto le pasó a una clienta
+                </h3>
+                <div
+                    style="font-size: 2.5rem; color: var(--color-gold-primary); animation: bounce-simple 2s infinite; text-align: center; width: 100%;">
+                    ↓↓↓
+                </div>
             </div>
         </div>
         <div class="video-container care-video-container">
             <div class="video-wrapper desktop-care-video">
                 <iframe
-                    src="https://iframe.mediadelivery.net/play/571643/a87b23f3-395c-45c4-ae74-47d316bf8e1e?autoplay=true&loop=true&muted=true&controls=true&background=1&preload=auto"
-                    loading="eager" allow="autoplay; fullscreen" allowfullscreen="true"></iframe>
+                    src="https://iframe.mediadelivery.net/play/571643/a87b23f3-395c-45c4-ae74-47d316bf8e1e?autoplay=0&loop=false&controls=true"
+                    loading="lazy" allow="accelerometer; gyroscope; encrypted-media; picture-in-picture; fullscreen"
+                    allowfullscreen="true"></iframe>
             </div>
             <div class="video-wrapper mobile-care-video">
                 <iframe
-                    src="https://iframe.mediadelivery.net/play/571643/a87b23f3-395c-45c4-ae74-47d316bf8e1e?autoplay=true&loop=true&muted=true&controls=true&background=1&preload=auto"
-                    loading="eager" allow="autoplay; fullscreen" allowfullscreen="true"></iframe>
+                    src="https://iframe.mediadelivery.net/play/571643/a87b23f3-395c-45c4-ae74-47d316bf8e1e?autoplay=0&loop=false&controls=true"
+                    loading="lazy" allow="accelerometer; gyroscope; encrypted-media; picture-in-picture; fullscreen"
+                    allowfullscreen="true"></iframe>
             </div>
         </div>
         <div class="container">
@@ -236,6 +261,33 @@
                     <div class="care-item">
                         <span class="care-icon">🏃</span>
                         <p>Evitá ejercicio intenso las <strong>primeras horas</strong></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Social Proof Section -->
+    <section id="social-proof" class="social-proof-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Resultados</span>
+                <h2>Experiencias Reales</h2>
+                <div class="section-divider"></div>
+            </div>
+            <div class="social-proof-grid">
+                <div class="social-card glass-card animate-on-scroll">
+                    <div class="social-image-wrapper">
+                        <img src="assets/social_proof_1.png" alt="Resultado Bronceado">
+                    </div>
+                </div>
+                <div class="social-card glass-card animate-on-scroll">
+                    <div class="social-image-wrapper">
+                        <img src="assets/social_proof_2.png" alt="Testimonio WhatsApp">
+                    </div>
+                </div>
+                <div class="social-card glass-card animate-on-scroll">
+                    <div class="social-image-wrapper">
+                        <img src="assets/social_proof_3.png" alt="Reseña Google">
                     </div>
                 </div>
             </div>

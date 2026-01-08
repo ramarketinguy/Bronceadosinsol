@@ -598,13 +598,10 @@ section {
     position: relative;
     width: 100%;
     height: 0;
+    padding-bottom: 56.25%;
+    /* Default 16:9 Aspect Ratio */
     overflow: hidden;
-    /* Mask for cropping */
-    background: transparent;
-    border-radius: 0;
-    /* Removing radius to show only cleaner video edges */
-    box-shadow: none;
-    /* Removing shadow for a frameless look */
+    background: #000;
 }
 
 .video-wrapper iframe {
@@ -844,7 +841,8 @@ section {
         margin: 0;
         width: 100%;
         max-width: 100%;
-        padding-bottom: 155%;
+        padding-bottom: 177.77%;
+        /* 9:16 Aspect Ratio */
         position: relative;
         overflow: hidden;
     }
@@ -928,26 +926,45 @@ section {
     transition: var(--transition-smooth);
     border: 1px solid var(--color-gold-primary);
     overflow: hidden;
+    animation: float 3s ease-in-out infinite, glow-pulse 4s infinite alternate;
 }
 
 .floating-btn:hover {
-    transform: scale(1.1) translateY(-5px);
+    transform: scale(1.1) translateY(-10px);
     box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6), 0 0 30px rgba(212, 175, 55, 0.6);
-    background: #fff;
 }
 
 .floating-btn img {
-    width: 110%;
-    height: 110%;
+    width: 100%;
+    height: 100%;
     object-fit: contain;
+    position: relative;
+    z-index: 2;
+}
+
+.floating-btn::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(to bottom right,
+            rgba(255, 255, 255, 0) 0%,
+            rgba(255, 255, 255, 0) 40%,
+            rgba(255, 255, 255, 0.2) 50%,
+            rgba(255, 255, 255, 0) 60%,
+            rgba(255, 255, 255, 0) 100%);
+    transform: rotate(45deg);
+    animation: shine-btn 4s infinite;
 }
 
 /* Base styles for mobile video wrapper */
 .mobile-video-wrapper {
     position: relative;
     width: 100%;
-    height: 50vh;
-    max-height: 400px;
+    height: 40vh;
+    max-height: 480px;
     overflow: hidden;
     background: #000;
 }
@@ -955,23 +972,126 @@ section {
 /* ===== Desktop Video Section Enhancement ===== */
 @media (min-width: 769px) {
     #showcase-video .mobile-video-wrapper {
-        height: 60vh !important;
-        max-height: 650px !important;
+        height: 85vh !important;
+        max-height: 950px !important;
     }
 }
 
 /* ===== Mobile Video Section Enhancement ===== */
 @media (max-width: 768px) {
     #showcase-video .mobile-video-wrapper {
-        height: 55vh !important;
-        max-height: 450px !important;
+        height: 100vh !important;
+        max-height: none !important;
+        overflow: hidden;
+    }
+
+    #showcase-video .mobile-video-wrapper iframe {
+        width: 320% !important;
+        /* Scale up to fill and crop */
+        height: 100% !important;
+        top: 50% !important;
+        left: 50% !important;
+        transform: translate(-50%, -50%) !important;
     }
 }
 
-/* ===== Mobile Video Section Enhancement ===== */
+/* Animations for WhatsApp button */
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-8px);
+    }
+}
+
+@keyframes glow-pulse {
+    0% {
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 10px rgba(212, 175, 55, 0.2);
+    }
+
+    100% {
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 30px rgba(212, 175, 55, 0.5);
+    }
+}
+
+@keyframes shine-btn {
+    0% {
+        left: -100%;
+        top: -100%;
+    }
+
+    20%,
+    100% {
+        left: 100%;
+        top: 100%;
+    }
+}
+@keyframes bounce-simple {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(15px); }
+}
+
+/* ===== Social Proof Section ===== */
+.social-proof-section {
+    padding: var(--spacing-xl) 0;
+    background: linear-gradient(to bottom, #000, #0a0a0a);
+}
+
+.social-proof-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--spacing-md);
+    margin-top: var(--spacing-lg);
+}
+
+.social-card {
+    border-radius: 20px;
+    overflow: hidden;
+    border: 1px solid rgba(212, 175, 55, 0.1);
+    transition: var(--transition-smooth);
+    background: rgba(255, 255, 255, 0.03);
+    display: flex;
+    flex-direction: column;
+    height: auto;
+}
+
+.social-image-wrapper {
+    width: 100%;
+    height: 100%;
+    max-height: 500px;
+    overflow: hidden;
+    border-radius: 15px;
+}
+
+.social-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+    transition: var(--transition-smooth);
+}
+
+.social-card:hover {
+    transform: translateY(-10px);
+    border-color: var(--color-gold-primary);
+    box-shadow: 0 10px 40px rgba(212, 175, 55, 0.1);
+}
+
+@media (max-width: 992px) {
+    .social-proof-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
 @media (max-width: 768px) {
-    #showcase-video .mobile-video-wrapper {
-        height: 90vh !important;
-        max-height: 700px !important;
+    .social-proof-grid {
+        grid-template-columns: 1fr;
+    }
+    .social-image-wrapper {
+        max-height: none;
     }
 }
