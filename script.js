@@ -225,3 +225,40 @@ glassCards.forEach(card => {
 
 // Log to confirm script loaded
 console.log('âœ¨ Estilo y Glamour - Landing page initialized with particle system');
+
+
+/* ===== Meta Conversions API (CAPI) Helper ===== */
+/**
+ * Función para enviar eventos a Meta via CAPI
+ * @param {string} eventName - Nombre del evento (ej: 'Purchase', 'Lead')
+ * @param {object} userData - Datos del usuario para el matching (email, teléfono, etc)
+ * @param {object} customData - Datos adicionales del evento (valor, moneda, etc)
+ */
+async function trackMetaEvent(eventName, userData = {}, customData = {}) {
+    const pixelId = '1120348705763717';
+    const apiVersion = 'v18.0';
+    const url = \https://graph.facebook.com/\/\/events\;
+
+    // Estructura recomendada por Meta
+    const data = [{
+        event_name: eventName,
+        event_time: Math.floor(Date.now() / 1000),
+        action_source: 'website',
+        user_data: userData,
+        custom_data: customData,
+        event_source_url: window.location.href,
+    }];
+
+    try {
+        const response = await fetch(\\?access_token=\\, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ data })
+        });
+        const result = await response.json();
+        console.log('? Meta CAPI Event Tracked:', eventName, result);
+        return result;
+    } catch (error) {
+        console.error('? Meta CAPI Error:', error);
+    }
+}
