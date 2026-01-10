@@ -312,19 +312,36 @@ function setupVideoPlayer(videoId) {
     if (overlay) {
         // Overlay Click -> Play
         overlay.addEventListener('click', () => {
-            video.play();
+            // Force play attempt
+            const playPromise = video.play();
+            if (playPromise !== undefined) {
+                playPromise.then(_ => {
+                    // Automatic playback started!
+                    overlay.classList.add('hidden');
+                    video.controls = true;
+                })
+                    .catch(error => {
+                        // Auto-play was prevented
+                        console.error("Video play failed:", error);
+                        video.muted = true;
+                        video.play();
+                    });
+            }
         });
 
         // Video Events to toggle Overlay
         video.addEventListener('play', () => {
             overlay.classList.add('hidden');
-            // user wants buttons? "pequeños controles". We can show native controls when playing.
-            video.controls = true;
+            // Show controls slightly delayed to prevent UI jump or immediate hide
+            setTimeout(() => { video.controls = true; }, 100);
         });
 
         video.addEventListener('pause', () => {
-            overlay.classList.remove('hidden');
-            video.controls = false;
+            // Check if user is seeking (seeking also triggers pause sometimes)
+            if (!video.seeking) {
+                overlay.classList.remove('hidden');
+                video.controls = false;
+            }
         });
 
         video.addEventListener('ended', () => {

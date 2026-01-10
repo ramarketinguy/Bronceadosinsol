@@ -1699,15 +1699,16 @@ section {
 
     /* Make the Showcase video section take full height minus some margin */
     .showcase-video-section {
-        height: 70vh !important;
-        /* Take 70% of screen height */
-        min-height: 400px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
+        height: auto !important;
+        /* Let content dictate height + padding */
+        min-height: auto;
+        display: block;
         background: #000 !important;
         padding: 0 !important;
-        margin: 0 !important;
+        /* Add spacing and center on mobile */
+        margin: 2rem auto !important;
+        width: 100% !important;
+        max-width: 100% !important;
     }
 
     /* Make the responsive container fill the section */
@@ -1784,8 +1785,14 @@ section {
 
 /* Move floating WhatsApp button higher to avoid overlap with Hero CTA */
 .floating-cta {
-    bottom: 100px !important;
-    /* Increased from 30px */
+    bottom: 30px !important;
+    right: 20px !important;
+    z-index: 9999 !important;
+    display: block !important;
+    /* Force display initially */
+    opacity: 1 !important;
+    /* Force opacity */
+    visibility: visible !important;
 }
 
 /* Care section mobile fix - reduce vertical spacing */
@@ -1798,6 +1805,10 @@ section {
     .care-video-wrapper {
         margin-top: 0 !important;
         margin-bottom: 0.5rem !important;
+        width: 90% !important;
+        /* Spacing on mobile */
+        margin-left: auto !important;
+        margin-right: auto !important;
     }
 
     /* Reduce aspect ratio for mobile Care video container to minimize empty space */
