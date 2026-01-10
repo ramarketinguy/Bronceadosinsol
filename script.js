@@ -250,58 +250,101 @@ console.log('✨ Estilo y Glamour - Landing page initialized with particle syste
 
 
 /* ===== Meta Conversions API (CAPI) & Pixel Tracking Helper ===== */
-/**
- * Envía eventos a Meta vía Pixel (Navegador) y CAPI (Servidor)
- * Recomendación de Meta: Enviar ambos con el mismo event_id para deduplicación.
- */
-async function trackMetaEvent(eventName, userData = {}, customData = {}) {
-    const pixelId = '1120348705763717';
-    const eventId = 'ev_' + Date.now() + '_' + Math.floor(Math.random() * 1000);
+const metaCAPIToken = 'EAFry5T1AwZAcBQW9wn4LsZCV67IGgeIM7CXQZAZCURIW1uqZCjrnKVtTLE4XSnxwtctLZB1LBPKZA4hdbpqiInjjaFSnnwRDrRJlz3MNElygFozO1tTRUyP2yIflXZAZBH5tmXneFiszRdj2lV2yybUcOOE4emJTdqYRhoJ2qPrFHDqPefKtLMwOFX4r3gb9q6vS4tgZDZD';
+const pixelId = '1205376682832142'; // Updated Pixel ID
 
-    // 1. Pixel Browser Tracking (Standard)
+async function trackMetaEvent(eventName, userData = {}, customData = {}, actionSource = 'website') {
+    // 1. Pixel Browser Tracking
     if (typeof fbq === 'function') {
-        fbq('track', eventName, customData, { eventID: eventId });
-        console.log(`📡 Pixel Tracked: ${eventName}`, customData);
+        fbq('track', eventName, customData);
     }
 
-    // 2. CAPI Tracking (Server-Side Events)
-    // Nota: metaCAPIToken se define en el index.html
-    const token = typeof metaCAPIToken !== 'undefined' ? metaCAPIToken : null;
+    // 2. CAPI Tracking
+    if (!metaCAPIToken) return;
 
-    if (!token) {
-        console.warn('⚠️ CAPI Token no encontrado. Solo se rastreará vía Pixel.');
-        return;
-    }
+    const eventTime = Math.floor(Date.now() / 1000);
+    const eventId = 'ev_' + eventTime + '_' + Math.floor(Math.random() * 1000);
 
-    const url = `https://graph.facebook.com/v18.0/${pixelId}/events?access_token=${token}`;
-
-    const data = {
+    const payload = {
         data: [{
             event_name: eventName,
-            event_time: Math.floor(Date.now() / 1000),
-            event_id: eventId,
-            action_source: 'website',
-            event_source_url: window.location.href,
+            event_time: eventTime,
+            action_source: actionSource,
             user_data: {
-                client_ip_address: '', // Idealmente capturado en servidor
+                // In a real implementation we would hash email/phone here.
+                // Sending empty or browser-derived data for PageView/Contact
                 client_user_agent: navigator.userAgent,
                 fbp: document.cookie.split('; ').find(row => row.startsWith('_fbp='))?.split('=')[1],
                 fbc: document.cookie.split('; ').find(row => row.startsWith('_fbc='))?.split('=')[1],
                 ...userData
             },
-            custom_data: customData
+            custom_data: customData,
+            event_id: eventId,
+            event_source_url: window.location.href
         }]
     };
 
     try {
-        const response = await fetch(url, {
+        const response = await fetch(`https://graph.facebook.com/v19.0/${pixelId}/events?access_token=${metaCAPIToken}`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(data)
+            body: JSON.stringify(payload)
         });
         const result = await response.json();
-        console.log('✨ Meta CAPI Response:', result);
+        console.log(`✨ CAPI ${eventName}:`, result);
     } catch (error) {
-        console.error('❌ Meta CAPI Error:', error);
+        console.error('❌ CAPI Error:', error);
     }
 }
+
+// Track PageView immediately
+trackMetaEvent('PageView');
+
+// --- Video Play Button Interaction ---
+function setupVideoPlayer(videoId) {
+    const video = document.getElementById(videoId);
+    if (!video) return;
+
+    // Try to find the overlay in the sibling/parent structure we created
+    const wrapper = video.closest('.video-responsive') || video.parentElement;
+    const overlay = wrapper.querySelector('.play-button-overlay');
+
+    if (overlay) {
+        // Overlay Click -> Play
+        overlay.addEventListener('click', () => {
+            video.play();
+        });
+
+        // Video Events to toggle Overlay
+        video.addEventListener('play', () => {
+            overlay.classList.add('hidden');
+            // user wants buttons? "pequeños controles". We can show native controls when playing.
+            video.controls = true;
+        });
+
+        video.addEventListener('pause', () => {
+            overlay.classList.remove('hidden');
+            video.controls = false;
+        });
+
+        video.addEventListener('ended', () => {
+            overlay.classList.remove('hidden');
+            video.controls = false;
+        });
+    }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    // Initialize Video Players
+    setupVideoPlayer('showcase-video-player');
+    setupVideoPlayer('care-video-desktop');
+    setupVideoPlayer('care-video-mobile');
+
+    // Track WhatsApp Clicks as 'Contact'
+    const whatsappLinks = document.querySelectorAll('a[href*="wa.me"]');
+    whatsappLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            trackMetaEvent('Contact', {}, { content_name: 'WhatsApp Click' });
+        });
+    });
+});

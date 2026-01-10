@@ -1872,3 +1872,64 @@ section {
         /* Reduced from 30px */
     }
 }
+
+/* ===== Play Button Overlay ===== */
+.play-button-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 70px;
+    height: 70px;
+    background: rgba(0, 0, 0, 0.4);
+    border: 2px solid var(--color-gold-primary);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    z-index: 10;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(2px);
+}
+
+.play-button-overlay:hover {
+    background: rgba(212, 175, 55, 0.2);
+    transform: translate(-50%, -50%) scale(1.1);
+}
+
+.play-icon {
+    color: var(--color-gold-primary);
+    font-size: 24px;
+    margin-left: 4px;
+    /* Optical adjustment */
+}
+
+.play-button-overlay.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* ===== Adjusted Video Sizing ===== */
+
+/* Desktop: Reduce size further (approx 340px) */
+.showcase-video-section,
+.care-video-wrapper {
+    max-width: 340px !important;
+}
+
+/* Mobile: Fix Cropping */
+@media (max-width: 768px) {
+
+    .showcase-aspect,
+    .video-responsive.aspect-9-16 {
+        /* Ensure aspect ratio is exactly 9:16 (177.77%) */
+        padding-bottom: 177.77% !important;
+        height: 0 !important;
+        /* Reset height */
+    }
+
+    .video-responsive video {
+        object-fit: cover !important;
+    }
+}
