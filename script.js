@@ -356,10 +356,7 @@ function setupVideoPlayer(videoId) {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    // Initialize Video Players
-    setupVideoPlayer('showcase-video-player');
-    setupVideoPlayer('care-video-desktop');
-    setupVideoPlayer('care-video-mobile');
+    // Initializing native video controls only - no custom JS needed for playback
 
     // Track WhatsApp Clicks as 'Contact'
     const whatsappLinks = document.querySelectorAll('a[href*="wa.me"]');
