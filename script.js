@@ -310,42 +310,43 @@ function setupVideoPlayer(videoId) {
     const overlay = wrapper.querySelector('.play-button-overlay');
 
     if (overlay) {
-        // Overlay Click -> Play
-        overlay.addEventListener('click', () => {
-            // Force play attempt
+        // Overlay Click -> Play (Aggressive)
+        overlay.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+
+            // 1. Hide Overlay Immediately for UI feedback
+            overlay.style.display = 'none';
+            video.controls = true;
+
+            // 2. Try playing
             const playPromise = video.play();
             if (playPromise !== undefined) {
-                playPromise.then(_ => {
-                    // Automatic playback started!
-                    overlay.classList.add('hidden');
-                    video.controls = true;
-                })
-                    .catch(error => {
-                        // Auto-play was prevented
-                        console.error("Video play failed:", error);
-                        video.muted = true;
-                        video.play();
-                    });
+                playPromise.catch(err => {
+                    console.log("Auto-play blocked, muting...", err);
+                    // 3. Fallback: Mute and Play
+                    video.muted = true;
+                    video.play();
+                });
             }
         });
 
-        // Video Events to toggle Overlay
+        // Sync UI if video starts via other means
         video.addEventListener('play', () => {
-            overlay.classList.add('hidden');
-            // Show controls slightly delayed to prevent UI jump or immediate hide
-            setTimeout(() => { video.controls = true; }, 100);
+            overlay.style.display = 'none';
+            video.controls = true;
         });
 
+        // Show overlay again if paused (and not seeking)
         video.addEventListener('pause', () => {
-            // Check if user is seeking (seeking also triggers pause sometimes)
             if (!video.seeking) {
-                overlay.classList.remove('hidden');
+                overlay.style.display = 'flex';
                 video.controls = false;
             }
         });
 
         video.addEventListener('ended', () => {
-            overlay.classList.remove('hidden');
+            overlay.style.display = 'flex';
             video.controls = false;
         });
     }

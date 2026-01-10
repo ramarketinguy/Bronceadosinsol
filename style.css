@@ -1700,18 +1700,15 @@ section {
     /* Make the Showcase video section take full height minus some margin */
     .showcase-video-section {
         height: auto !important;
-        /* Let content dictate height + padding */
         min-height: auto;
-        display: block;
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
         background: #000 !important;
         padding: 0 !important;
-        /* Add spacing and center on mobile */
-        margin: 2rem auto !important;
-        width: 90% !important;
-        max-width: 340px !important;
-        /* Consistent with desktop size or just max phone width */
-        border-radius: 10px;
-        /* Optional aesthetics */
+        margin: 2rem 0 !important;
+        width: 100% !important;
+        max-width: 100% !important;
     }
 
     /* Make the responsive container fill the section */
