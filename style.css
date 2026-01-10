@@ -819,7 +819,9 @@ section {
 .desktop-care-video {
     padding-bottom: 56.25%;
     /* 16:9 aspect ratio */
-    max-width: 800px;
+    max-width: 900px;
+    /* Constraint desktop width */
+    margin: 0 auto;
     display: block;
 }
 
@@ -1494,16 +1496,16 @@ section {
 
 /* Visibility Utilities for Video Switching */
 .mobile-only {
-    display: none;
+    display: none !important;
 }
 
 @media (max-width: 768px) {
     .desktop-only {
-        display: none;
+        display: none !important;
     }
 
     .mobile-only {
-        display: block;
+        display: block !important;
     }
 
     /* Remove ALL spacing issues and make Showcase video MUCH LARGER */
@@ -1537,8 +1539,13 @@ section {
 /* ===== Showcase Video Section - FINAL FIX ===== */
 .showcase-video-section {
     width: 100%;
-    margin: 0 !important;
+    max-width: 900px;
+    /* Limit width on desktop */
+    margin: 0 auto !important;
+    /* Center it */
     padding: 0 !important;
+    position: relative;
+    z-index: 5;
 }
 
 /* Desktop: Remove gap between Hero and Showcase */
@@ -1555,11 +1562,14 @@ section {
 /* Mobile: Make video MUCH LARGER */
 @media (max-width: 768px) {
     .showcase-aspect {
-        padding-bottom: 100% !important;
-        /* Square aspect for mobile - much taller */
+        padding-bottom: 120% !important;
+        /* Taller on mobile for full screen feel */
+        height: auto !important;
     }
 
     .showcase-video-section {
+        max-width: 100% !important;
+        /* Full width on mobile */
         margin-top: 0 !important;
     }
 }
