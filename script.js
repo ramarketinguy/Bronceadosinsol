@@ -252,9 +252,9 @@ console.log('✨ Estilo y Glamour - Landing page initialized with particle syste
 /* ===== Meta Conversions API (CAPI) & Pixel Tracking Helper ===== */
 /* ===== Meta Conversions API (CAPI) & Pixel Tracking Helper ===== */
 const metaCAPIToken = 'EAFry5T1AwZAcBQW9wn4LsZCV67IGgeIM7CXQZAZCURIW1uqZCjrnKVtTLE4XSnxwtctLZB1LBPKZA4hdbpqiInjjaFSnnwRDrRJlz3MNElygFozO1tTRUyP2yIflXZAZBH5tmXneFiszRdj2lV2yybUcOOE4emJTdqYRhoJ2qPrFHDqPefKtLMwOFX4r3gb9q6vS4tgZDZD';
-const pixelId = '1120348705763717'; // Unified Pixel ID
+const pixelId = '1205376682832142'; // Correct New Pixel ID
 
-console.log("Antigravity Scripts Loaded v5.0"); // User Verification Log
+console.log("Antigravity Scripts Loaded v5.1"); // User Verification Log
 
 async function trackMetaEvent(eventName, userData = {}, customData = {}, actionSource = 'website') {
     // 1. Pixel Browser Tracking
