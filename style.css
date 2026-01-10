@@ -1102,8 +1102,8 @@ section {
 /* ===== Floating CTA Button ===== */
 .floating-cta {
     position: fixed;
-    bottom: 25px;
-    right: 25px;
+    bottom: 15px;
+    right: 15px;
     z-index: 9999;
     opacity: 0;
     visibility: hidden;
@@ -1470,13 +1470,15 @@ section {
     /* Placeholder background */
 }
 
-.video-responsive iframe {
+.video-responsive iframe,
+.video-responsive video {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
     border: none;
+    object-fit: cover;
 }
 
 /* Aspect Ratios */

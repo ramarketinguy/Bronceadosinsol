@@ -203,8 +203,8 @@ window.addEventListener('scroll', () => {
     const ctaTop = ctaSection ? ctaSection.offsetTop : document.documentElement.scrollHeight;
     const viewportHeight = window.innerHeight;
 
-    // Show after Hero and hide when CTA section starts becoming visible
-    if (scrollPos > heroHeight - 100 && scrollPos < ctaTop - viewportHeight + 100) {
+    // Show strictly after Hero and hide exactly when CTA section starts entering viewport
+    if (scrollPos > heroHeight && scrollPos < ctaTop - viewportHeight) {
         floatingCta.classList.add('visible');
     } else {
         floatingCta.classList.remove('visible');
