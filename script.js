@@ -1,4 +1,4 @@
-// ===== Elegant Antigravity Particles (Atmospheric Cosmos) =====
+﻿/* ===== Elegant Antigravity Particles (Atmospheric Cosmos) ===== */
 class ParticleSystem {
     constructor() {
         this.canvas = document.createElement('canvas');
@@ -159,6 +159,17 @@ document.addEventListener('DOMContentLoaded', () => {
         el.classList.add('fade-in');
         observer.observe(el);
     });
+
+    // Track WhatsApp link clicks
+    const whatsappLinks = document.querySelectorAll('a[href*="wa.me"]');
+    whatsappLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            trackMetaEvent('Contact', {}, {
+                content_name: 'Reserva WhatsApp',
+                content_category: 'Leads'
+            });
+        });
+    });
 });
 
 // Navbar scroll effect
@@ -181,8 +192,19 @@ window.addEventListener('scroll', () => {
 
 // Floating button scroll visibility
 const floatingCta = document.getElementById('floating-cta');
+const heroSection = document.getElementById('hero');
+const ctaSection = document.getElementById('cta');
+
 window.addEventListener('scroll', () => {
-    if (window.scrollY > 500) {
+    if (!floatingCta) return;
+
+    const scrollPos = window.scrollY;
+    const heroHeight = heroSection ? heroSection.offsetHeight : 500;
+    const ctaTop = ctaSection ? ctaSection.offsetTop : document.documentElement.scrollHeight;
+    const viewportHeight = window.innerHeight;
+
+    // Show after Hero and hide when CTA section starts becoming visible
+    if (scrollPos > heroHeight - 100 && scrollPos < ctaTop - viewportHeight + 100) {
         floatingCta.classList.add('visible');
     } else {
         floatingCta.classList.remove('visible');
@@ -192,13 +214,13 @@ window.addEventListener('scroll', () => {
 // Add stagger animation to benefit cards
 const benefitCards = document.querySelectorAll('.benefit-card');
 benefitCards.forEach((card, index) => {
-    card.style.animationDelay = `${index * 0.1} s`;
+    card.style.animationDelay = `${index * 0.1}s`;
 });
 
 // Add stagger animation to about cards
 const aboutCards = document.querySelectorAll('.about-card');
 aboutCards.forEach((card, index) => {
-    card.style.animationDelay = `${index * 0.15} s`;
+    card.style.animationDelay = `${index * 0.15}s`;
 });
 
 // Enhanced hover effect for glass cards
@@ -227,38 +249,59 @@ glassCards.forEach(card => {
 console.log('✨ Estilo y Glamour - Landing page initialized with particle system');
 
 
-/* ===== Meta Conversions API (CAPI) Helper ===== */
+/* ===== Meta Conversions API (CAPI) & Pixel Tracking Helper ===== */
 /**
- * Funci�n para enviar eventos a Meta via CAPI
- * @param {string} eventName - Nombre del evento (ej: 'Purchase', 'Lead')
- * @param {object} userData - Datos del usuario para el matching (email, tel�fono, etc)
- * @param {object} customData - Datos adicionales del evento (valor, moneda, etc)
+ * Envía eventos a Meta vía Pixel (Navegador) y CAPI (Servidor)
+ * Recomendación de Meta: Enviar ambos con el mismo event_id para deduplicación.
  */
 async function trackMetaEvent(eventName, userData = {}, customData = {}) {
     const pixelId = '1120348705763717';
-    const apiVersion = 'v18.0';
-    const url = \https://graph.facebook.com/\/\/events\;
+    const eventId = 'ev_' + Date.now() + '_' + Math.floor(Math.random() * 1000);
 
-    // Estructura recomendada por Meta
-    const data = [{
-        event_name: eventName,
-        event_time: Math.floor(Date.now() / 1000),
-        action_source: 'website',
-        user_data: userData,
-        custom_data: customData,
-        event_source_url: window.location.href,
-    }];
+    // 1. Pixel Browser Tracking (Standard)
+    if (typeof fbq === 'function') {
+        fbq('track', eventName, customData, { eventID: eventId });
+        console.log(`📡 Pixel Tracked: ${eventName}`, customData);
+    }
+
+    // 2. CAPI Tracking (Server-Side Events)
+    // Nota: metaCAPIToken se define en el index.html
+    const token = typeof metaCAPIToken !== 'undefined' ? metaCAPIToken : null;
+
+    if (!token) {
+        console.warn('⚠️ CAPI Token no encontrado. Solo se rastreará vía Pixel.');
+        return;
+    }
+
+    const url = `https://graph.facebook.com/v18.0/${pixelId}/events?access_token=${token}`;
+
+    const data = {
+        data: [{
+            event_name: eventName,
+            event_time: Math.floor(Date.now() / 1000),
+            event_id: eventId,
+            action_source: 'website',
+            event_source_url: window.location.href,
+            user_data: {
+                client_ip_address: '', // Idealmente capturado en servidor
+                client_user_agent: navigator.userAgent,
+                fbp: document.cookie.split('; ').find(row => row.startsWith('_fbp='))?.split('=')[1],
+                fbc: document.cookie.split('; ').find(row => row.startsWith('_fbc='))?.split('=')[1],
+                ...userData
+            },
+            custom_data: customData
+        }]
+    };
 
     try {
-        const response = await fetch(\\?access_token=\\, {
+        const response = await fetch(url, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ data })
+            body: JSON.stringify(data)
         });
         const result = await response.json();
-        console.log('? Meta CAPI Event Tracked:', eventName, result);
-        return result;
+        console.log('✨ Meta CAPI Response:', result);
     } catch (error) {
-        console.error('? Meta CAPI Error:', error);
+        console.error('❌ Meta CAPI Error:', error);
     }
 }

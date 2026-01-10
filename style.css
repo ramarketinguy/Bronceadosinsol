@@ -205,6 +205,201 @@ p {
     justify-content: center;
     align-items: center;
     text-align: center;
+    --color-black-secondary: #1a1a1a;
+    --color-black-tertiary: #2a2a2a;
+    --color-gold-primary: #d4af37;
+    --color-gold-secondary: #f4d03f;
+    --color-gold-dark: #b8941e;
+    --color-white-marble: #e8e8e8;
+    --color-white: #ffffff;
+    --color-white-brilliant: #ffffff;
+    --color-white-transparent: rgba(255, 255, 255, 0.1);
+    --shadow-white-glow: 0 0 20px rgba(255, 255, 255, 0.4);
+
+    /* Spacing */
+    --spacing-xs: 0.5rem;
+    --spacing-sm: 1rem;
+    --spacing-md: 2rem;
+    --spacing-lg: 4rem;
+    --spacing-xl: 6rem;
+
+    /* Typography */
+    --font-heading: 'Cormorant Garamond', serif;
+    --font-body: 'Montserrat', sans-serif;
+
+    /* Transitions */
+    --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-fast: all 0.2s ease;
+
+    /* Shadows */
+    --shadow-soft: 0 4px 20px rgba(0, 0, 0, 0.3);
+    --shadow-glow: 0 0 40px rgba(212, 175, 55, 0.3);
+}
+
+/* ===== Global Styles ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+}
+
+body {
+    font-family: var(--font-body);
+    color: var(--color-white);
+    background-color: #000000;
+    line-height: 1.6;
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* ===== Particle Canvas Background ===== */
+#particle-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background: #000000;
+}
+
+/* ===== Typography ===== */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: var(--font-heading);
+    font-weight: 600;
+    line-height: 1.2;
+    color: var(--color-white);
+}
+
+h1 {
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
+    font-weight: 700;
+}
+
+h2 {
+    font-size: clamp(2rem, 4vw, 3.5rem);
+}
+
+h3 {
+    font-size: clamp(1.3rem, 2.5vw, 1.8rem);
+}
+
+p {
+    font-size: clamp(0.95rem, 1.5vw, 1.1rem);
+    line-height: 1.8;
+}
+
+/* ===== Utility Classes ===== */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--spacing-md);
+}
+
+.glass-card {
+    background: rgba(26, 26, 26, 0.6);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: var(--spacing-md);
+    transition: var(--transition-smooth);
+}
+
+.glass-card:hover {
+    background: rgba(26, 26, 26, 0.8);
+    border-color: rgba(212, 175, 55, 0.3);
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-glow);
+}
+
+/* ===== Navigation ===== */
+.nav-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    padding: var(--spacing-sm) 0;
+    background: rgba(0, 0, 0, 0.9);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    transition: var(--transition-smooth);
+}
+
+.nav-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--spacing-md);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-logo {
+    height: 60px;
+    object-fit: contain;
+    transition: var(--transition-smooth);
+}
+
+.nav-logo:hover {
+    transform: scale(1.05);
+    filter: drop-shadow(0 0 20px rgba(212, 175, 55, 0.5));
+}
+
+.nav-menu {
+    display: flex;
+    list-style: none;
+    gap: var(--spacing-md);
+}
+
+.nav-menu a {
+    color: var(--color-white);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    position: relative;
+    transition: var(--transition-fast);
+}
+
+.nav-menu a::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--color-gold-primary), var(--color-gold-secondary));
+    transition: width 0.3s ease;
+}
+
+.nav-menu a:hover {
+    color: var(--color-gold-primary);
+}
+
+.nav-menu a:hover::after {
+    width: 100%;
+}
+
+/* ===== Hero Section ===== */
+.hero-section {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
     padding: var(--spacing-xl) var(--spacing-md);
     position: relative;
     overflow: hidden;
@@ -216,8 +411,16 @@ p {
     left: 0;
     width: 100%;
     height: 100%;
+    object-fit: cover;
     z-index: 0;
     overflow: hidden;
+}
+
+/* Make Hero full-screen on mobile */
+@media (max-width: 768px) {
+    .hero-section {
+        min-height: 100vh !important;
+    }
 }
 
 .hero-video {
@@ -899,8 +1102,8 @@ section {
 /* ===== Floating CTA Button ===== */
 .floating-cta {
     position: fixed;
-    bottom: 30px;
-    right: 30px;
+    bottom: 25px;
+    right: 25px;
     z-index: 9999;
     opacity: 0;
     visibility: hidden;
@@ -1030,9 +1233,17 @@ section {
         top: 100%;
     }
 }
+
 @keyframes bounce-simple {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(15px); }
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(15px);
+    }
 }
 
 /* ===== Social Proof Section ===== */
@@ -1091,7 +1302,558 @@ section {
     .social-proof-grid {
         grid-template-columns: 1fr;
     }
+
     .social-image-wrapper {
         max-height: none;
+    }
+}
+
+/* ===== GSAP Scroll Video Styles ===== */
+
+/* Showcase Video Root */
+.scroll-video-root {
+    position: relative;
+    /* Height will be controlled largely by the sticky duration, but we can set a min-height */
+    width: 100%;
+    z-index: 10;
+}
+
+.scroll-video-sticky {
+    position: relative;
+    /* Changed by GSAP to sticky */
+    top: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.scroll-video-container {
+    width: 360px;
+    /* Initial size */
+    height: 360px;
+    /* Initial size */
+    border-radius: 20px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    will-change: width, height, border-radius;
+    /* Optimization */
+}
+
+/* Care Video specific Styles (inherits some logic but specific classes) */
+.care-video-root {
+    position: relative;
+    width: 100%;
+    z-index: 10;
+    margin-bottom: var(--spacing-lg);
+}
+
+.care-video-sticky {
+    position: relative;
+    top: 0;
+    height: 100vh;
+    /* Adjust if we want less scroll distance */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.care-video-container-anim {
+    width: 360px;
+    height: 360px;
+    border-radius: 20px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    background: #000;
+}
+
+/* Overlay Styles */
+.scroll-video-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.3);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 2rem;
+    opacity: 0;
+    /* Hidden initially, revealed by GSAP */
+    pointer-events: none;
+}
+
+.scroll-overlay-content h3 {
+    font-size: 2rem;
+    color: var(--color-gold-primary);
+    margin-bottom: 0.5rem;
+}
+
+/* Mobile Adjustments */
+@media (max-width: 768px) {
+
+    .scroll-video-container,
+    .care-video-container-anim {
+        width: 280px;
+        height: 280px;
+    }
+}
+
+
+/* ===== Clean Video Card Styles ===== */
+.clean-video-card {
+    position: relative;
+    width: 100%;
+    max-width: 900px;
+    /* Max width for desktop */
+    aspect-ratio: 16 / 9;
+    /* Standard video ratio */
+    border-radius: 12px;
+    /* rounded-xl equivalent */
+    overflow: hidden;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    /* shadow-lg */
+    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    /* spring-like transition */
+    background: #000;
+    opacity: 0;
+    /* Initial state for animation */
+    transform: translateY(20px);
+    /* Initial state for animation */
+}
+
+.clean-video-card:hover {
+    transform: scale(1.02) translateY(0);
+    /* scale-102 on hover */
+}
+
+.clean-video-card iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    display: block;
+}
+
+/* Gradient Overlay (Optional, for aesthetics) */
+.video-overlay-gradient {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.3) 0%, transparent 40%);
+    pointer-events: none;
+}
+
+/* Mobile Adjustments */
+@media (max-width: 768px) {
+    .clean-video-card {
+        border-radius: 8px;
+    }
+}
+
+/* Animation Class (Added by JS) */
+.card-visible {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.6s ease-out, transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+
+/* ===== Simple Responsive Video Styles ===== */
+
+.video-responsive {
+    position: relative;
+    width: 100%;
+    height: 0;
+    overflow: hidden;
+    background: #000;
+    /* Placeholder background */
+}
+
+.video-responsive iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+/* Aspect Ratios */
+.aspect-16-9 {
+    padding-bottom: 56.25%;
+    /* 16:9 */
+}
+
+.aspect-9-16 {
+    padding-bottom: 177.77%;
+    /* 9:16 */
+}
+
+/* Visibility Utilities for Video Switching */
+.mobile-only {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .desktop-only {
+        display: none;
+    }
+
+    .mobile-only {
+        display: block;
+    }
+
+    /* Remove ALL spacing issues and make Showcase video MUCH LARGER */
+    #showcase-video {
+        padding: 0 !important;
+        margin: 0 !important;
+        width: 100% !important;
+    }
+
+    /* Make Showcase video take up most of screen height on mobile */
+    #showcase-video .aspect-16-9 {
+        padding-bottom: 75% !important;
+        /* Increase from 56.25% to make it taller */
+    }
+
+    /* Reduce Care section vertical spacing */
+    .care-video-wrapper {
+        padding: 0 !important;
+        margin-bottom: 1.5rem !important;
+        /* Reduced from 3rem */
+        width: 100% !important;
+    }
+
+    /* Reduce Care section overall padding */
+    .care-section {
+        padding: 2rem 0 !important;
+        /* Reduced vertical padding */
+    }
+}
+
+/* ===== Showcase Video Section - FINAL FIX ===== */
+.showcase-video-section {
+    width: 100%;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+/* Desktop: Remove gap between Hero and Showcase */
+.hero-section {
+    margin-bottom: 0 !important;
+}
+
+/* Desktop aspect ratio - slightly taller than 16:9 */
+.showcase-aspect {
+    padding-bottom: 50%;
+    /* Taller than standard 16:9 */
+}
+
+/* Mobile: Make video MUCH LARGER */
+@media (max-width: 768px) {
+    .showcase-aspect {
+        padding-bottom: 100% !important;
+        /* Square aspect for mobile - much taller */
+    }
+
+    .showcase-video-section {
+        margin-top: 0 !important;
+    }
+}
+
+/* Extra small mobile */
+@media (max-width: 480px) {
+    .showcase-aspect {
+        padding-bottom: 120% !important;
+        /* Even taller on very small screens */
+    }
+}
+
+
+/* ===== AGGRESSIVE VIDEO FIX - FINAL ===== */
+
+/* Force dark background everywhere to hide letterboxing */
+.showcase-video-section,
+.showcase-video-section .video-responsive,
+.showcase-video-section iframe {
+    background: #000 !important;
+}
+
+/* Desktop: Remove ALL spacing between Hero and Video */
+.hero-section {
+    margin-bottom: 0 !important;
+    padding-bottom: 0 !important;
+}
+
+/* Force showcase to have no margins at all */
+.showcase-video-section {
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100% !important;
+}
+
+/* Make the container fill properly */
+.showcase-aspect {
+    background: #000 !important;
+    padding-bottom: 56.25% !important;
+    /* 16:9 on desktop */
+    max-width: 100%;
+}
+
+/* MOBILE SPECIFIC - Make video MUCH bigger */
+@media (max-width: 768px) {
+
+    /* Taller aspect ratio on mobile to show video larger */
+    .showcase-aspect {
+        padding-bottom: 100% !important;
+        /* Square ratio - video will be centered */
+    }
+
+    /* Remove ALL padding/margin */
+    .showcase-video-section {
+        padding: 0 !important;
+        margin: 0 !important;
+    }
+
+    /* Make iframe fill container */
+    .showcase-aspect iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border: none;
+        background: #000;
+    }
+}
+
+/* Very small screens - even taller */
+@media (max-width: 480px) {
+    .showcase-aspect {
+        padding-bottom: 120% !important;
+        /* Taller than square */
+    }
+}
+
+/* Hide the default section wrapper background */
+#showcase-video {
+    background: transparent !important;
+}
+
+
+/* ===== FINAL IFRAME FIX ===== */
+
+/* Force iframe to fill container on ALL devices */
+.showcase-video-section iframe,
+.showcase-aspect iframe {
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    border: none !important;
+    min-width: 100% !important;
+    max-width: 100% !important;
+}
+
+/* Force container to be positioned relative */
+.showcase-aspect {
+    position: relative !important;
+    width: 100% !important;
+    background: #000 !important;
+}
+
+/* Mobile: Force larger aspect ratio */
+@media (max-width: 768px) {
+    .showcase-aspect {
+        padding-bottom: 90% !important;
+        /* Almost square on mobile */
+    }
+
+    /* Override any fixed widths from the player */
+    .showcase-video-section * {
+        max-width: 100% !important;
+    }
+}
+
+
+/* ===== MAXIMIZE VIDEO VISIBILITY - FULL HEIGHT APPROACH ===== */
+
+@media (max-width: 768px) {
+
+    /* Make the Showcase video section take full height minus some margin */
+    .showcase-video-section {
+        height: 70vh !important;
+        /* Take 70% of screen height */
+        min-height: 400px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #000 !important;
+        padding: 0 !important;
+        margin: 0 !important;
+    }
+
+    /* Make the responsive container fill the section */
+    .showcase-aspect {
+        position: relative;
+        width: 100% !important;
+        height: 100% !important;
+        padding-bottom: 0 !important;
+        /* Remove padding-based aspect ratio */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #000 !important;
+    }
+
+    /* Force iframe to fill as much as possible */
+    .showcase-aspect iframe {
+        position: relative !important;
+        width: 100% !important;
+        height: 100% !important;
+        min-height: 300px;
+    }
+}
+
+/* Also fix the general section background color */
+.showcase-video-section,
+#showcase-video {
+    background: #000 !important;
+}
+
+
+/* ===== REMOVE ALL BLUE GLOW - FINAL FIX ===== */
+
+/* Force everything to have black background */
+body,
+html {
+    background: #000 !important;
+    background-color: #000 !important;
+    background-image: none !important;
+}
+
+/* Remove any blue glow from main sections */
+.showcase-video-section,
+#showcase-video,
+.showcase-aspect,
+.video-responsive {
+    background: #000 !important;
+    background-color: #000 !important;
+    box-shadow: none !important;
+    border: none !important;
+}
+
+/* Override any existing vignette or gradient effects */
+body::before,
+body::after,
+html::before,
+html::after {
+    display: none !important;
+}
+
+/* Ensure About section has black background too */
+.about-section {
+    background: #000 !important;
+}
+
+/* Force all sections to have black background */
+section {
+    background: #000 !important;
+    background-color: #000 !important;
+}
+
+
+/* ===== FLOATING BUTTON SPACING FIX ===== */
+
+/* Move floating WhatsApp button higher to avoid overlap with Hero CTA */
+.floating-cta {
+    bottom: 100px !important;
+    /* Increased from 30px */
+}
+
+/* Care section mobile fix - reduce vertical spacing */
+@media (max-width: 768px) {
+    .care-section {
+        padding-top: 1rem !important;
+        padding-bottom: 1rem !important;
+    }
+
+    .care-video-wrapper {
+        margin-top: 0 !important;
+        margin-bottom: 0.5rem !important;
+    }
+
+    /* Reduce aspect ratio for mobile Care video container to minimize empty space */
+    .care-video-wrapper .aspect-9-16 {
+        padding-bottom: 140% !important;
+        /* Reduced from 177.77% */
+    }
+}
+
+/* Golden WhatsApp button styling */
+.floating-btn {
+    background: linear-gradient(135deg, #000 0%, #1a1a1a 100%) !important;
+    border: 2px solid var(--color-gold-primary) !important;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6), 0 0 25px rgba(212, 175, 55, 0.4) !important;
+}
+
+.floating-btn:hover {
+    border-color: var(--color-gold-secondary) !important;
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.7), 0 0 40px rgba(212, 175, 55, 0.6) !important;
+}
+
+
+/* ===== FIX HERO BUTTON AND SCROLL INDICATOR OVERLAP ===== */
+
+/* Add more space between the CTA button and scroll indicator */
+.hero-content {
+    margin-bottom: 80px !important;
+    /* Add space below button */
+}
+
+/* Or add top margin to scroll indicator */
+.hero-scroll-indicator {
+    margin-top: 30px !important;
+}
+
+/* Ensure scroll indicator has space from CTA */
+.primary-cta {
+    margin-bottom: 40px !important;
+}
+
+/* Mobile specific spacing */
+@media (max-width: 768px) {
+    .primary-cta {
+        margin-bottom: 50px !important;
+    }
+
+    .hero-scroll-indicator {
+        bottom: 20px !important;
+        /* Position at bottom */
+    }
+}
+
+
+/* ===== FINAL FIXES - Mobile Hero, WhatsApp Button, and Spacing ===== */
+
+/* 1. More space at TOP of Hero content on mobile (below navbar) */
+@media (max-width: 768px) {
+    .hero-content {
+        padding-top: 100px !important;
+        /* Add space below navbar */
+        margin-top: 40px !important;
+    }
+
+    /* 3. Reduce excessive space between button and scroll cursor */
+    .primary-cta {
+        margin-bottom: 20px !important;
+        /* Reduced from 50px */
+    }
+
+    .hero-scroll-indicator {
+        margin-top: 10px !important;
+        /* Reduced from 30px */
     }
 }
