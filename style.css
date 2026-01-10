@@ -1537,10 +1537,11 @@ section {
 }
 
 /* ===== Showcase Video Section - FINAL FIX ===== */
+/* ===== Showcase Video Section - FINAL FIX ===== */
 .showcase-video-section {
     width: 100%;
-    max-width: 900px;
-    /* Limit width on desktop */
+    max-width: 400px;
+    /* Phone size constraint */
     margin: 0 auto !important;
     /* Center it */
     padding: 0 !important;
@@ -1554,9 +1555,10 @@ section {
 }
 
 /* Desktop aspect ratio - slightly taller than 16:9 */
+/* Desktop aspect ratio - Vertical 9:16 */
 .showcase-aspect {
-    padding-bottom: 50%;
-    /* Taller than standard 16:9 */
+    padding-bottom: 177.77%;
+    /* 9:16 aspect ratio */
 }
 
 /* Mobile: Make video MUCH LARGER */
@@ -1598,15 +1600,16 @@ section {
     padding-bottom: 0 !important;
 }
 
-/* Desktop: Remove ALL spacing between Hero and Video */
+/* Desktop: Restore spacing between Hero and Video */
 .hero-section {
-    margin-bottom: 0 !important;
+    margin-bottom: 4rem !important;
     padding-bottom: 0 !important;
 }
 
-/* Care Video Wrapper - Constrain Width */
+/* Care Video Wrapper - Constrain Width for Vertical Video */
 .care-video-wrapper {
-    max-width: 900px !important;
+    max-width: 400px !important;
+    /* Phone size constraint */
     margin: 0 auto !important;
     margin-bottom: 1rem !important;
     display: block;
@@ -1615,10 +1618,11 @@ section {
 /* MOBILE SPECIFIC - Make video MUCH bigger */
 @media (max-width: 768px) {
 
-    /* Taller aspect ratio on mobile to show video larger */
+    /* Mobile: Ensure full vertical ratio is kept */
     .showcase-aspect {
-        padding-bottom: 100% !important;
-        /* Square ratio - video will be centered */
+        padding-bottom: 177.77% !important;
+        /* 9:16 full vertical */
+        height: auto !important;
     }
 
     /* Remove ALL padding/margin */
