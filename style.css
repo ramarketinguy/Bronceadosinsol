@@ -1707,8 +1707,11 @@ section {
         padding: 0 !important;
         /* Add spacing and center on mobile */
         margin: 2rem auto !important;
-        width: 100% !important;
-        max-width: 100% !important;
+        width: 90% !important;
+        max-width: 340px !important;
+        /* Consistent with desktop size or just max phone width */
+        border-radius: 10px;
+        /* Optional aesthetics */
     }
 
     /* Make the responsive container fill the section */
