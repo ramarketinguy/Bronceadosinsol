@@ -1604,10 +1604,12 @@ section {
     padding-bottom: 0 !important;
 }
 
-/* REMOVED CONFLICTING BLOCK THAT BROKE CENTERING */
-padding-bottom: 56.25% !important;
-/* 16:9 on desktop */
-max-width: 100%;
+/* Care Video Wrapper - Constrain Width */
+.care-video-wrapper {
+    max-width: 900px !important;
+    margin: 0 auto !important;
+    margin-bottom: 1rem !important;
+    display: block;
 }
 
 /* MOBILE SPECIFIC - Make video MUCH bigger */
