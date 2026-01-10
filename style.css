@@ -1598,19 +1598,16 @@ section {
     padding-bottom: 0 !important;
 }
 
-/* Force showcase to have no margins at all */
-.showcase-video-section {
-    margin: 0 !important;
-    padding: 0 !important;
-    width: 100% !important;
+/* Desktop: Remove ALL spacing between Hero and Video */
+.hero-section {
+    margin-bottom: 0 !important;
+    padding-bottom: 0 !important;
 }
 
-/* Make the container fill properly */
-.showcase-aspect {
-    background: #000 !important;
-    padding-bottom: 56.25% !important;
-    /* 16:9 on desktop */
-    max-width: 100%;
+/* REMOVED CONFLICTING BLOCK THAT BROKE CENTERING */
+padding-bottom: 56.25% !important;
+/* 16:9 on desktop */
+max-width: 100%;
 }
 
 /* MOBILE SPECIFIC - Make video MUCH bigger */
