@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Reservá tu cita de bronceado sin sol en Estilo y Glamour. Realizá tu seña y agendá tu turno.">
+    <meta name="keywords" content="bronceado sin sol, agendar cita, reserva, estilo y glamour">
+    <title>Agendar Cita - Estilo y Glamour</title>
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://estiloyglamourmvd.com/agendamiento.html">
+    <meta property="og:title" content="Agendar Cita - Estilo y Glamour">
+    <meta property="og:description"
+        content="Reservá tu cita de bronceado sin sol profesional. Realizá tu seña y asegurá tu turno.">
+    <meta property="og:image" content="https://estiloyglamourmvd.com/assets/poster_reel_1.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600;700&family=Montserrat:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css?v=7">
+
+    <!-- Signals Gateway Pixel + Meta Pixel Code -->
+    <script>
+        !(function (f, b, e, v, vv, n, nn, t, s, tt, ss) {
+            if (!f.cbq) {
+                nn = f.cbq = function () {
+                    nn.initialized ? nn.apply(f.cbq, arguments) : nn.queue.push(arguments);
+                };
+                if (!f._cbq) f._cbq = nn;
+                nn.push = nn;
+                nn.loaded = !0;
+                nn.version = '2.0';
+                nn.queue = [];
+                tt = b.createElement(e);
+                tt.async = !0;
+                tt.src = vv;
+                ss = b.getElementsByTagName(e)[0];
+                ss.parentNode.insertBefore(tt, ss);
+            }
+            if (f.xbq) return;
+            if (f.fbq) f.xbq = f.fbq;
+            n = f.fbq = function () {
+                if (arguments[0].startsWith('track')) {
+                    n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments);
+                    f.cbq.initialized ? f.cbq.apply(f.cbq, arguments) : f.cbq.queue.push(arguments);
+                } else {
+                    n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments);
+                }
+            };
+            if (!f._fbq) f._fbq = n;
+            n.push = n;
+            n.loaded = !0;
+            n.version = '2.0';
+            n.queue = (f.xbq) ? f.xbq.queue : [];
+            t = b.createElement(e);
+            t.async = !0;
+            t.src = v;
+            s = b.getElementsByTagName(e)[0];
+            s.parentNode.insertBefore(t, s);
+        })
+            (window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js', 'https://metrics.estiloyglamourmvd.com/sdk/1308211162900804493/events.js');
+        fbq('init', '1189241653345607');
+        fbq('track', 'PageView');
+        cbq('setHost', 'https://metrics.estiloyglamourmvd.com');
+        cbq('init', '1308211162900804493');
+        cbq('set', 'integrationMethod', 'forkFromSnippetCode');
+        cbq('track', 'PageView');
+    </script>
+    <!-- End Signals Gateway Pixel + Meta Pixel Code -->
+</head>
+
+<body>
+    <!-- Animated Marble Background -->
+    <div class="marble-background"></div>
+
+    <!-- Navigation -->
+    <nav id="main-nav" class="nav-container">
+        <div class="nav-content">
+            <a href="index.html">
+                <img src="assets/logo_new.png" alt="Estilo y Glamour Logo" class="nav-logo">
+            </a>
+            <ul class="nav-menu">
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="index.html#about">Qué es</a></li>
+                <li><a href="index.html#process">Proceso</a></li>
+                <li><a href="index.html#benefits">Beneficios</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="scheduling-hero">
+        <div class="container">
+            <div class="section-header" style="padding-top: 120px;">
+                <span class="section-tag">📅 Reservá tu turno</span>
+                <h1 style="font-size: clamp(2rem, 5vw, 3.5rem); margin-bottom: 1rem;">Agendar tu Cita</h1>
+                <p style="max-width: 600px; margin: 0 auto; color: #ffffff; font-size: 1.1rem; line-height: 1.8;">
+                    Para confirmar tu reserva es necesario realizar una <strong
+                        style="color: var(--color-gold-primary);">seña de $500</strong> mediante transferencia bancaria.
+                </p>
+                <div class="section-divider"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Transfer Details Section -->
+    <section class="transfer-section">
+        <div class="container">
+            <div class="transfer-card glass-card">
+                <div class="transfer-header">
+                    <span class="transfer-icon">🏦</span>
+                    <h2>Datos para Transferencia</h2>
+                </div>
+
+                <div class="transfer-details">
+                    <div class="transfer-item">
+                        <span class="transfer-label">Banco</span>
+                        <span class="transfer-value">Scotiabank</span>
+                    </div>
+                    <div class="transfer-item copyable" onclick="copyToClipboard('0400873100', this)">
+                        <span class="transfer-label">Caja de Ahorro <small style="opacity: 0.7;">(click para
+                                copiar)</small></span>
+                        <span class="transfer-value highlight">
+                            0400873100
+                            <span class="copy-icon">📋</span>
+                            <span class="copy-feedback">¡Copiado!</span>
+                        </span>
+                    </div>
+                    <div class="transfer-item">
+                        <span class="transfer-label">Titular</span>
+                        <span class="transfer-value">Sandra Lavega</span>
+                    </div>
+                    <div class="transfer-item">
+                        <span class="transfer-label">Sucursal</span>
+                        <span class="transfer-value">52</span>
+                    </div>
+                    <div class="transfer-item">
+                        <span class="transfer-label">Motivo</span>
+                        <span class="transfer-value">Otros</span>
+                    </div>
+                    <div class="transfer-item">
+                        <span class="transfer-label">Referencia</span>
+                        <span class="transfer-value highlight">Tu nombre</span>
+                    </div>
+                </div>
+
+                <div class="transfer-warning">
+                    <span class="warning-icon">⚠️</span>
+                    <p><strong>IMPORTANTE:</strong> Realizá una <strong>transferencia instantánea</strong> y poné tu
+                        nombre en la referencia.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Send Receipt Section -->
+    <section class="receipt-section">
+        <div class="container">
+            <div class="receipt-card glass-card">
+                <div class="receipt-content">
+                    <h3>📲 Enviá tu comprobante</h3>
+                    <p>Una vez realizada la transferencia, enviá el comprobante por WhatsApp para confirmar tu seña.</p>
+                    <a href="https://wa.me/59899160541?text=Hola!%20Realicé%20la%20seña%20para%20mi%20bronceado.%20Adjunto%20comprobante%20%F0%9F%8C%9E"
+                        class="cta-button primary-cta whatsapp-btn" target="_blank" rel="noopener"
+                        onclick="fbq('track', 'Lead');">
+                        <span>📩 Enviar Comprobante por WhatsApp</span>
+                        <span class="button-shine"></span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Calendar Section -->
+    <section id="calendario" class="calendar-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">🗓️ Elegí tu fecha</span>
+                <h2>Seleccioná tu Turno</h2>
+                <div class="section-divider"></div>
+            </div>
+
+            <!-- 30-Minute Warning Banner -->
+            <div class="urgent-warning">
+                <div class="warning-content">
+                    <span class="warning-big-icon">⏰</span>
+                    <div class="warning-text">
+                        <h4>¡IMPORTANTE!</h4>
+                        <p>Tenés <strong>30 minutos</strong> después de agendar para enviar el comprobante de
+                            transferencia. <br class="desktop-only"><strong class="nowrap-desktop">Si no lo enviás, tu
+                                turno se cancela automáticamente.</strong></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="calendar-embed glass-card">
+                <!-- Cal.com Embed -->
+                <iframe src="https://cal.com/estilo-y-glamour/bronceado"
+                    style="width: 100%; height: 600px; border: none; border-radius: 15px;" frameborder="0"
+                    allowfullscreen>
+                </iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cancellation Policy Section -->
+    <section class="policy-section">
+        <div class="container">
+            <div class="policy-card glass-card">
+                <div class="policy-header">
+                    <span class="policy-icon">📋</span>
+                    <h3>Política de Cancelación</h3>
+                </div>
+                <div class="policy-content">
+                    <div class="policy-item policy-ok">
+                        <span class="policy-emoji">✅</span>
+                        <p>Podés <strong>cancelar hasta 24 horas antes</strong> de tu cita sin perder la seña.</p>
+                    </div>
+                    <div class="policy-item policy-warning">
+                        <span class="policy-emoji">⚠️</span>
+                        <p>Si cancelás con <strong>menos de 24 horas</strong> de anticipación, la seña se pierde.</p>
+                    </div>
+                    <div class="policy-item policy-ok">
+                        <span class="policy-emoji">🔄</span>
+                        <p><strong>Cambio de horario:</strong> ¡Sin problema! Podés reprogramar tu turno sin
+                            inconvenientes.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Info Section -->
+    <section id="contacto" class="contact-section">
+        <div class="container">
+            <div class="contact-card glass-card">
+                <h3>¿Tenés dudas?</h3>
+                <p>Contactanos por WhatsApp y te ayudamos con tu reserva.</p>
+                <a href="https://wa.me/59899160541?text=Hola!%20Tengo%20una%20consulta%20sobre%20el%20bronceado%20sin%20sol%20%F0%9F%8C%9E"
+                    class="cta-button secondary-cta" target="_blank" rel="noopener">
+                    <span>💬 Consultar por WhatsApp</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer-section">
+        <div class="container">
+            <div class="footer-content">
+                <a href="index.html">
+                    <img src="assets/logo_new.png" alt="Estilo y Glamour Logo" class="footer-logo">
+                </a>
+                <p class="footer-tagline">Tu momento, tu lugar ✨</p>
+                <p class="footer-copyright">© 2025 Estilo y Glamour. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating CTA Button -->
+    <div class="floating-cta" id="floating-cta">
+        <a href="https://wa.me/59899160541?text=Hola!%20Quiero%20información%20sobre%20el%20bronceado%20sin%20sol%20%F0%9F%8C%9E"
+            class="floating-btn" target="_blank" rel="noopener" aria-label="Contactar por WhatsApp">
+            <img src="assets/whatsapp_icon.png" alt="WhatsApp">
+        </a>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        function copyToClipboard(text, element) {
+            navigator.clipboard.writeText(text).then(function () {
+                // Show feedback
+                element.classList.add('copied');
+                setTimeout(function () {
+                    element.classList.remove('copied');
+                }, 2000);
+            }).catch(function (err) {
+                // Fallback for older browsers
+                const textarea = document.createElement('textarea');
+                textarea.value = text;
+                document.body.appendChild(textarea);
+                textarea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textarea);
+                element.classList.add('copied');
+                setTimeout(function () {
+                    element.classList.remove('copied');
+                }, 2000);
+            });
+        }
+    </script>
+</body>
+
+</html>

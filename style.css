@@ -1952,3 +1952,482 @@ section {
         object-fit: cover !important;
     }
 }
+
+/* ===== Price Display ===== */
+.price-container {
+    margin: var(--spacing-md) 0;
+    animation: pulse 2s infinite;
+}
+
+.price-label {
+    display: block;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--color-gold-secondary);
+    margin-bottom: var(--spacing-xs);
+}
+
+.price-amount {
+    display: block;
+    font-family: var(--font-heading);
+    font-size: 4rem;
+    font-weight: 700;
+    color: var(--color-gold-primary);
+    line-height: 1;
+    text-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.05);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* ===== Scheduling Page Styles ===== */
+
+/* Scheduling Hero */
+.scheduling-hero {
+    min-height: 40vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: var(--spacing-md);
+    position: relative;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.9) 0%, rgba(26, 26, 26, 0.8) 100%);
+}
+
+/* Transfer Section */
+.transfer-section {
+    padding: var(--spacing-lg) 0;
+}
+
+.transfer-card {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: var(--spacing-lg);
+    text-align: center;
+}
+
+.transfer-header {
+    margin-bottom: var(--spacing-md);
+}
+
+.transfer-icon {
+    font-size: 3rem;
+    display: block;
+    margin-bottom: var(--spacing-sm);
+}
+
+.transfer-header h2 {
+    color: var(--color-gold-primary);
+    font-size: clamp(1.5rem, 3vw, 2rem);
+}
+
+.transfer-details {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+    margin-bottom: var(--spacing-md);
+}
+
+.transfer-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--spacing-sm);
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    border-left: 3px solid var(--color-gold-primary);
+}
+
+.transfer-label {
+    font-weight: 500;
+    color: var(--color-white-marble);
+    font-size: 0.9rem;
+}
+
+.transfer-value {
+    font-weight: 600;
+    color: var(--color-white);
+    font-size: 1rem;
+}
+
+.transfer-value.highlight {
+    color: var(--color-gold-primary);
+    font-size: 1.1rem;
+}
+
+.transfer-warning {
+    background: rgba(212, 175, 55, 0.1);
+    border: 1px solid var(--color-gold-primary);
+    border-radius: 15px;
+    padding: var(--spacing-sm);
+    display: flex;
+    align-items: flex-start;
+    gap: var(--spacing-sm);
+    text-align: left;
+}
+
+.warning-icon {
+    font-size: 1.5rem;
+    flex-shrink: 0;
+}
+
+.transfer-warning p {
+    font-size: 0.9rem;
+    margin: 0;
+    line-height: 1.5;
+}
+
+/* Receipt Section */
+.receipt-section {
+    padding: var(--spacing-md) 0 var(--spacing-lg);
+}
+
+.receipt-card {
+    max-width: 500px;
+    margin: 0 auto;
+    text-align: center;
+    padding: var(--spacing-lg);
+    background: linear-gradient(135deg, rgba(26, 26, 26, 0.8), rgba(42, 42, 42, 0.6));
+}
+
+.receipt-content h3 {
+    color: var(--color-gold-primary);
+    margin-bottom: var(--spacing-sm);
+}
+
+.receipt-content p {
+    margin-bottom: var(--spacing-md);
+    color: var(--color-white-marble);
+}
+
+.whatsapp-btn {
+    background: #25D366 !important;
+    color: white !important;
+    border: none !important;
+}
+
+.whatsapp-btn:hover {
+    background: #128C7E !important;
+    box-shadow: 0 10px 30px rgba(37, 211, 102, 0.3) !important;
+}
+
+/* Calendar Section */
+.calendar-section {
+    padding: var(--spacing-lg) 0;
+}
+
+.calendar-embed {
+    max-width: 700px;
+    margin: 0 auto;
+    min-height: 400px;
+}
+
+.calendar-placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 300px;
+}
+
+/* Contact Section */
+.contact-section {
+    padding: var(--spacing-lg) 0;
+}
+
+.contact-card {
+    max-width: 500px;
+    margin: 0 auto;
+    text-align: center;
+    padding: var(--spacing-lg);
+}
+
+.contact-card h3 {
+    color: var(--color-gold-primary);
+    margin-bottom: var(--spacing-sm);
+}
+
+.contact-card p {
+    margin-bottom: var(--spacing-md);
+    color: var(--color-white-marble);
+}
+
+/* Mobile Adjustments for Scheduling Page */
+@media (max-width: 768px) {
+    .scheduling-hero {
+        min-height: 30vh;
+    }
+
+    .transfer-item {
+        flex-direction: column;
+        text-align: center;
+        gap: 0.25rem;
+    }
+
+    .transfer-label {
+        font-size: 0.8rem;
+    }
+
+    .transfer-value {
+        font-size: 1.1rem;
+    }
+
+    .transfer-warning {
+        flex-direction: column;
+        text-align: center;
+        align-items: center;
+    }
+}
+
+/* ===== Policy Section Styles ===== */
+.policy-section {
+    padding: var(--spacing-md) 0 var(--spacing-lg);
+}
+
+.policy-card {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: var(--spacing-lg);
+}
+
+.policy-header {
+    text-align: center;
+    margin-bottom: var(--spacing-md);
+}
+
+.policy-icon {
+    font-size: 2.5rem;
+    display: block;
+    margin-bottom: var(--spacing-sm);
+}
+
+.policy-header h3 {
+    color: var(--color-gold-primary);
+    font-size: clamp(1.3rem, 2.5vw, 1.6rem);
+}
+
+.policy-content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+}
+
+.policy-item {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--spacing-sm);
+    padding: var(--spacing-sm);
+    border-radius: 12px;
+    background: rgba(0, 0, 0, 0.2);
+}
+
+.policy-emoji {
+    font-size: 1.5rem;
+    flex-shrink: 0;
+}
+
+.policy-item p {
+    margin: 0;
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+.policy-item.policy-ok {
+    border-left: 3px solid #4ade80;
+}
+
+.policy-item.policy-warning {
+    border-left: 3px solid var(--color-gold-primary);
+    background: rgba(212, 175, 55, 0.05);
+}
+
+@media (max-width: 768px) {
+    .policy-item {
+        flex-direction: column;
+        text-align: center;
+        align-items: center;
+    }
+}
+
+/* ===== Urgent Warning Banner ===== */
+.urgent-warning {
+    background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+    border: 2px solid #fca5a5;
+    border-radius: 15px;
+    padding: var(--spacing-md);
+    margin: 0 auto var(--spacing-md) auto;
+    width: fit-content;
+    max-width: 100%;
+    animation: pulse-warning 2s ease-in-out infinite;
+    box-shadow: 0 0 30px rgba(220, 38, 38, 0.4);
+}
+
+@keyframes pulse-warning {
+
+    0%,
+    100% {
+        box-shadow: 0 0 20px rgba(220, 38, 38, 0.4);
+    }
+
+    50% {
+        box-shadow: 0 0 40px rgba(220, 38, 38, 0.6);
+    }
+}
+
+.warning-content {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+}
+
+.warning-big-icon {
+    font-size: 3rem;
+    flex-shrink: 0;
+    animation: shake 0.5s ease-in-out infinite;
+}
+
+@keyframes shake {
+
+    0%,
+    100% {
+        transform: rotate(0deg);
+    }
+
+    25% {
+        transform: rotate(-10deg);
+    }
+
+    75% {
+        transform: rotate(10deg);
+    }
+}
+
+.warning-text h4 {
+    color: #ffffff;
+    font-size: 1.4rem;
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.warning-text p {
+    color: #fef2f2;
+    margin: 0;
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+.warning-text strong {
+    color: #ffffff;
+}
+
+@media (max-width: 768px) {
+    .warning-content {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .warning-big-icon {
+        font-size: 2.5rem;
+    }
+
+    .warning-text h4 {
+        font-size: 1.2rem;
+    }
+}
+
+/* ===== Copy to Clipboard Styles ===== */
+.transfer-item.copyable {
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.transfer-item.copyable:hover {
+    background: rgba(212, 175, 55, 0.15);
+    border-color: var(--color-gold-primary);
+    transform: scale(1.02);
+}
+
+.copy-icon {
+    margin-left: 0.5rem;
+    opacity: 0.7;
+    transition: all 0.3s ease;
+}
+
+.transfer-item.copyable:hover .copy-icon {
+    opacity: 1;
+    transform: scale(1.2);
+}
+
+.copy-feedback {
+    display: none;
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    background: #22c55e;
+    color: white;
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    animation: fadeInOut 2s ease;
+}
+
+.transfer-item.copied .copy-feedback {
+    display: block;
+}
+
+.transfer-item.copied .copy-icon {
+    display: none;
+}
+
+@keyframes fadeInOut {
+    0% {
+        opacity: 0;
+        transform: translateY(-50%) scale(0.8);
+    }
+
+    20% {
+        opacity: 1;
+        transform: translateY(-50%) scale(1);
+    }
+
+    80% {
+        opacity: 1;
+        transform: translateY(-50%) scale(1);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateY(-50%) scale(0.8);
+    }
+}
+
+/* Utilities for Desktop/Mobile layout */
+.desktop-only {
+    display: none;
+}
+
+@media (min-width: 769px) {
+    .desktop-only {
+        display: block;
+    }
+
+    .nowrap-desktop {
+        white-space: nowrap;
+    }
+}
