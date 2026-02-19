@@ -256,7 +256,7 @@ const pixelId = '1189241653345607'; // Pixel ID unificado con Signals Gateway
 // TEST_EVENT_CODE: Activar para pruebas en Meta Events Manager.
 // Poné aquí el código de prueba que aparece en Events Manager > Test Events.
 // Dejalo en '' (vacío) para producción.
-const TEST_EVENT_CODE = 'TEST68662';
+const TEST_EVENT_CODE = '';
 
 console.log("Antigravity Scripts Loaded v6.0 — CAPI Token Updated");
 
