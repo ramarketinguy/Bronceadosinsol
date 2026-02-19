@@ -250,12 +250,19 @@ console.log('✨ Estilo y Glamour - Landing page initialized with particle syste
 
 
 /* ===== Meta Conversions API (CAPI) & Pixel Tracking Helper ===== */
-/* ===== Meta Conversions API (CAPI) & Pixel Tracking Helper ===== */
-const metaCAPIToken = 'EAFry5T1AwZAcBQW9wn4LsZCV67IGgeIM7CXQZAZCURIW1uqZCjrnKVtTLE4XSnxwtctLZB1LBPKZA4hdbpqiInjjaFSnnwRDrRJlz3MNElygFozO1tTRUyP2yIflXZAZBH5tmXneFiszRdj2lV2yybUcOOE4emJTdqYRhoJ2qPrFHDqPefKtLMwOFX4r3gb9q6vS4tgZDZD';
-const pixelId = '1205376682832142'; // Correct New Pixel ID
+const metaCAPIToken = 'EAFry5T1AwZAcBQzLz2cvl2MUel8P6cXbgw0n1oM5RXEiJXmLB8972BJsNuPxlQVwxQCwIJyGJ2ZCCanYFkyrLeRSi4Th1HcUsqXsh9ZB1DKxtQNtTg7zxm9bmQrSqBuw65nFF9C33tBtEFvdKToa8oXNVjoj7mdnPqpkGC9dJyYI5kcod2mM69catSVIuQxRQZDZD';
+const pixelId = '1189241653345607'; // Pixel ID unificado con Signals Gateway
 
-console.log("Antigravity Scripts Loaded v5.1"); // User Verification Log
+// TEST_EVENT_CODE: Activar para pruebas en Meta Events Manager.
+// Poné aquí el código de prueba que aparece en Events Manager > Test Events.
+// Dejalo en '' (vacío) para producción.
+const TEST_EVENT_CODE = 'TEST68662';
 
+console.log("Antigravity Scripts Loaded v6.0 — CAPI Token Updated");
+
+/**
+ * trackMetaEvent - Envía eventos tanto por el Pixel (browser) como por CAPI (server-side)
+ */
 async function trackMetaEvent(eventName, userData = {}, customData = {}, actionSource = 'website') {
     // 1. Pixel Browser Tracking
     if (typeof fbq === 'function') {
@@ -274,8 +281,6 @@ async function trackMetaEvent(eventName, userData = {}, customData = {}, actionS
             event_time: eventTime,
             action_source: actionSource,
             user_data: {
-                // In a real implementation we would hash email/phone here.
-                // Sending empty or browser-derived data for PageView/Contact
                 client_user_agent: navigator.userAgent,
                 fbp: document.cookie.split('; ').find(row => row.startsWith('_fbp='))?.split('=')[1],
                 fbc: document.cookie.split('; ').find(row => row.startsWith('_fbc='))?.split('=')[1],
@@ -287,8 +292,13 @@ async function trackMetaEvent(eventName, userData = {}, customData = {}, actionS
         }]
     };
 
+    // Agregar test_event_code si está activo (solo para pruebas)
+    if (TEST_EVENT_CODE) {
+        payload.test_event_code = TEST_EVENT_CODE;
+    }
+
     try {
-        const response = await fetch(`https://graph.facebook.com/v19.0/${pixelId}/events?access_token=${metaCAPIToken}`, {
+        const response = await fetch(`https://graph.facebook.com/v21.0/${pixelId}/events?access_token=${metaCAPIToken}`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(payload)
@@ -300,8 +310,86 @@ async function trackMetaEvent(eventName, userData = {}, customData = {}, actionS
     }
 }
 
+/**
+ * sendMetaTestEvent - Envía el evento de prueba exacto que Meta recomienda
+ * para verificar la conexión CAPI en Events Manager > Test Events.
+ * Usá esta función desde la consola del navegador: sendMetaTestEvent()
+ */
+async function sendMetaTestEvent() {
+    if (!metaCAPIToken) {
+        console.error('❌ No hay token CAPI configurado');
+        return;
+    }
+
+    const testPayload = {
+        data: [
+            {
+                event_name: "Purchase",
+                event_time: Math.floor(Date.now() / 1000),
+                action_source: "website",
+                user_data: {
+                    em: [
+                        "7b17fb0bd173f625b58636fb796407c22b3d16fc78302d79f0fd30c2fc2fc068"
+                    ],
+                    ph: [
+                        null
+                    ]
+                },
+                attribution_data: {
+                    attribution_share: "0.3"
+                },
+                custom_data: {
+                    currency: "USD",
+                    value: "142.52"
+                },
+                original_event_data: {
+                    event_name: "Purchase",
+                    event_time: Math.floor(Date.now() / 1000)
+                }
+            }
+        ]
+    };
+
+    // Agregar test_event_code si está activo
+    if (TEST_EVENT_CODE) {
+        testPayload.test_event_code = TEST_EVENT_CODE;
+    }
+
+    console.log('🧪 Enviando evento de prueba Purchase a Meta CAPI...');
+    console.log('📦 Payload:', JSON.stringify(testPayload, null, 2));
+
+    try {
+        const response = await fetch(`https://graph.facebook.com/v21.0/${pixelId}/events?access_token=${metaCAPIToken}`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(testPayload)
+        });
+        const result = await response.json();
+
+        if (result.events_received) {
+            console.log(`✅ ÉXITO — Eventos recibidos por Meta: ${result.events_received}`);
+            console.log('📊 Resultado completo:', result);
+            console.log('👉 Verificá en: https://business.facebook.com/events_manager → Test Events');
+        } else {
+            console.warn('⚠️ Respuesta inesperada:', result);
+        }
+        return result;
+    } catch (error) {
+        console.error('❌ Error enviando evento de prueba:', error);
+        return null;
+    }
+}
+
 // Track PageView immediately
 trackMetaEvent('PageView');
+
+// Enviar evento de prueba automáticamente si TEST_EVENT_CODE está activo
+if (TEST_EVENT_CODE) {
+    console.log('🧪 Modo de prueba ACTIVO — test_event_code:', TEST_EVENT_CODE);
+    console.log('💡 Para enviar manualmente un Purchase de prueba, ejecutá en consola: sendMetaTestEvent()');
+    // Enviar el evento de prueba Purchase automáticamente
+    sendMetaTestEvent();
+}
 
 // --- Video Play Button Interaction ---
 function setupVideoPlayer(videoId) {
